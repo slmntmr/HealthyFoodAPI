@@ -14,11 +14,17 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
+
 public class FoodDiseaseController {
 
     private final FoodRepository foodRepository;
     private final DiseaseRepository diseaseRepository;
+
+    // Manuel constructor ile bağımlılık enjeksiyonu
+    public FoodDiseaseController(FoodRepository foodRepository, DiseaseRepository diseaseRepository) {
+        this.foodRepository = foodRepository;
+        this.diseaseRepository = diseaseRepository;
+    }
 
     @PostMapping("/bulk-add")
     public ResponseEntity<?> addBulkData(@RequestBody List<Food> foods) {

@@ -10,10 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+
 public class FoodService {
 
     private final FoodRepository foodRepository;
+
+    // Manuel constructor ile bağımlılık enjeksiyonu
+    public FoodService(FoodRepository foodRepository) {
+        this.foodRepository = foodRepository;
+    }
 
     public List<DiseaseDTO> getRelatedDiseases(String foodName) {
         // Küçük/büyük harf duyarsız ve kısmi eşleşme ile besinleri ara

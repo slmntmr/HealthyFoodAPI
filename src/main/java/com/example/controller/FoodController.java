@@ -12,11 +12,19 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequiredArgsConstructor
+
 @RequestMapping("/api/foods")
 public class FoodController {
 
     private final FoodService foodService;
+
+    // Manuel constructor ekliyoruz
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
+
+
+
     @GetMapping("/{name}/related-diseases")
     public ResponseEntity<?> getRelatedDiseases(@PathVariable String name) {
         try {

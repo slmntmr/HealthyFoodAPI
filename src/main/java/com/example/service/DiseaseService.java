@@ -10,10 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+
 public class DiseaseService {
 
     private final DiseaseRepository diseaseRepository;
+
+    // Manuel constructor
+    public DiseaseService(DiseaseRepository diseaseRepository) {
+        this.diseaseRepository = diseaseRepository;
+    }
 
     public List<FoodDTO> getRecommendedFoods(String diseaseName) {
         // Küçük/büyük harf duyarsız ve kısmi eşleşme ile hastalıkları ara
