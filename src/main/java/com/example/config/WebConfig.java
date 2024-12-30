@@ -9,7 +9,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://besin-hastalik-frontend.vercel.app")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedOrigins("https://besin-hastalik-frontend.vercel.app") // Frontend URL'si
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // İzin verilen HTTP metotları
+                .allowedHeaders("*") // Tüm başlıkları kabul et
+                .allowCredentials(true); // Kimlik bilgilerini destekle
     }
 }
+
