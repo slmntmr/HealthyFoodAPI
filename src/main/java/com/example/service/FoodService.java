@@ -3,14 +3,13 @@ package com.example.service;
 import com.example.dto.DiseaseDTO;
 import com.example.entity.Food;
 import com.example.repository.FoodRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
 public class FoodService {
 
     private final FoodRepository foodRepository;
@@ -20,6 +19,7 @@ public class FoodService {
         this.foodRepository = foodRepository;
     }
 
+    @Cacheable(value = "relatedDiseases", key = "#foodName") // Cache tanımı
     public List<DiseaseDTO> getRelatedDiseases(String foodName) {
         // Küçük/büyük harf duyarsız ve kısmi eşleşme ile besinleri ara
         List<Food> foods = foodRepository.findByNameContainingIgnoreCase(foodName);
